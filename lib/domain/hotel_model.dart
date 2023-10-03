@@ -4,17 +4,12 @@ class HotelModel {
   final Ae? ae;
   final Ae? hotelModelAs;
   final At? at;
-
   final Ch? ch;
-
   final Ae? dk;
   final Ae? es;
   final Ae? fr;
-
   final Ae? ie;
-
   final Ae? nl;
-
   final Ae? se;
 
   HotelModel({

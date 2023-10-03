@@ -16,7 +16,7 @@ class FetchData {
   Future<HotelModel> get() async {
     Uri uri = Uri.parse(_baseUrl);
     print('URI: $uri');
-    final response = await http.get(uri, headers: _headers);
+    final response = await http.get(uri, headers: _headers,);
     if (response.statusCode == 200) {
       final jsonMap = json.decode(response.body);
       HotelModel hotelModel=HotelModel.fromJson(jsonMap);

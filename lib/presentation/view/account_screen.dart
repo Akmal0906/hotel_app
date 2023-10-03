@@ -14,30 +14,59 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return  SafeArea(
       child: Scaffold(
-        body: FutureBuilder(
-          future: FetchData().get(),
-          builder: (BuildContext context, AsyncSnapshot<HotelModel> snapshot) {
-            if(snapshot.connectionState==ConnectionState.done){
-              return Column(
-                children: [
-                  SizedBox(
-                    child: CachedNetworkImage(
-                      imageUrl: snapshot.data!.at!.lastMinuteDealsCardImageUrl??'',
-                      placeholder: (context, url) => const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) => const Icon(Icons.error),
-                    ),
-                  ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FutureBuilder(
+              future: FetchData().get(),
+              builder: (BuildContext context, AsyncSnapshot<HotelModel> snapshot) {
+                if(snapshot.connectionState==ConnectionState.done){
+                  return Column(
+                    children: [
+                      SizedBox(
+                        child: CachedNetworkImage(
+                          imageUrl: snapshot.data!.at!.lastMinuteDealsCardImageUrl??'',
+                          placeholder: (context, url) => const CircularProgressIndicator(),
+                          errorWidget: (context, url, error) => const Icon(Icons.error),
+                        ),
+                      ),
 
-                ],
-              );
-            }else{
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
+                    ],
+                  );
+                }else{
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                }
+              },
+            ),
+            Text(
+              'Hello Json',
+              textAlign: TextAlign.left,
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+
+              style: TextStyle(
+                  letterSpacing: 1,
+                  shadows: const [
+                    Shadow(
+                      color: Colors.red,
+                      blurRadius: 4,
+                      offset: Offset(1, 5)
+                    )
+                  ],
+                  decoration: TextDecoration.combine([
+                    TextDecoration.underline,
+                    TextDecoration.overline
+                  ]),
+                  decorationColor: Colors.yellow,
+                  decorationStyle: TextDecorationStyle.dashed,
+                  decorationThickness: 2,),
+
+            ),
+          ],
         ),
       ),
     );
